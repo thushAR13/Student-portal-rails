@@ -1,7 +1,10 @@
 <div id="<%= dom_id forum %>">
   <p>
     <strong>Author:</strong>
-    <%= forum.author_id %>
+    <%id = forum.user_id%>
+    <% u = User.find(id) %>
+    <%= u.email %>
+    
   </p>
 
   <p>
