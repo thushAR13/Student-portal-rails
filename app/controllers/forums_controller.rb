@@ -1,5 +1,7 @@
 class ForumsController < ApplicationController
   before_action :set_forum, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+ before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /forums or /forums.json
   def index
@@ -12,7 +14,8 @@ class ForumsController < ApplicationController
 
   # GET /forums/new
   def new
-    @forum = Forum.new
+    #@forum = Forum.new
+    @forum = current_user.forums.build
   end
 
   # GET /forums/1/edit
@@ -21,7 +24,8 @@ class ForumsController < ApplicationController
 
   # POST /forums or /forums.json
   def create
-    @forum = Forum.new(forum_params)
+   # @forum = Forum.new(forum_params)
+    @forum = current_user.forums.build(forum_params)
 
     respond_to do |format|
       if @forum.save
@@ -57,6 +61,15 @@ class ForumsController < ApplicationController
     end
   end
 
+  def correct_user
+    @forum = current_user.forums.find_by(id: params[:id])
+    #render json: @forum
+    if @forum.nil? 
+      redirect_to root_path, notice: "Not Authorised" 
+    
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_forum
@@ -68,3 +81,4 @@ class ForumsController < ApplicationController
       params.require(:forum).permit(:author_id, :title, :content, :user_id)
     end
 end
+ 

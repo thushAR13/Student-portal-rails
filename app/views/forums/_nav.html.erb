@@ -27,7 +27,15 @@
         <%= link_to 'Edit profile', edit_user_registration_path, class:"nav-link active"%> 
         </li>
 
+        <li class = "nav-link active float-right" > 
+    
+        <%= current_user.email %>
+        
+        </li>
+
+
         <% else %>
+
         </li>
         <li class="nav-item">
        <%= link_to 'Register', new_user_registration_path, class:"nav-link active"%> 
