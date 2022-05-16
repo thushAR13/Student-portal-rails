@@ -1,1 +1,1 @@
-json.array! @forums, partial: "forums/forum", as: :forum
+json.array! @forums, partial: 'forums/forum', as: :forum

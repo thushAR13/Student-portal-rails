@@ -1,0 +1,24 @@
+<%= form_for @comment do |form| %>
+
+   
+    
+    <div>
+      <%=form.label :add_comment, style: "display: block" %>
+      <%=form.text_field :comment_body%>
+    </div>
+    
+
+    <div>
+    <%= form.number_field :post_id, id: :forum_id, value: $pid , type: :hidden%>
+   </div>
+
+  
+
+    <div>
+    
+    <%= form.number_field :posted_by, id: :posted_by, value: current_user.email, type: :hidden%>
+   </div>
+  <%= params %>
+   <%= form.submit %>
+
+  <% end %>

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'comments' => 'comments#index'
+  get 'comments/show'
+  get 'comments/new' => 'comments#new'
+  #post 'comments/new' => 'comments#create'
+  post '/comments' => 'comments#create'
+  # resources :comments
   devise_for :users
   resources :users
   resources :forums

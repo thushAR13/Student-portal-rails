@@ -1,0 +1,12 @@
+<div id="forums">
+  <% @comment.each do |comment| %>
+   
+    <%= render comment%>
+
+  <% end %>
+
+
+  <% $pid = params[:format] %>
+
+  <%= link_to "Add comment", comments_new_path %>
+</div>
